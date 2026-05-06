@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>RAPPORT | LEAK MONITOR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #0a0a0c; color: white; font-family: 'Roboto Mono', monospace; padding: 40px; line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; }
+        .counter { color: #e74c3c; border: 1px solid #e74c3c; padding: 10px; display: inline-block; margin-bottom: 20px; font-size: 0.8rem; }
+        .leak-card { background: #141417; border: 1px solid #2d2d30; padding: 20px; margin-bottom: 15px; border-left: 4px solid #e74c3c; }
+        .tuto { background: #1a1a1e; border: 1px dashed #444; padding: 20px; margin-top: 40px; border-radius: 5px; }
+        h1, h2 { color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+        .danger { color: #e74c3c; font-weight: bold; }
+        .success { color: #2ecc71; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="counter">SÉCURITÉ : RECHERCHE {{ nb_recherches }} SUR 2</div>
+        
+        <h1>Rapport d'incident</h1>
+        <p>Cible analysée : <span class="danger">{{ email }}</span></p>
+
+        {% if breaches %}
+            <h2 class="danger">⚠️ {{ breaches|length }} SOURCES DE PROBLÈMES TROUVÉES :</h2>
+            {% for breach in breaches %}
+                <div class="leak-card">
+                    <strong>SITE :</strong> {{ breach.Name }}<br>
+                    <strong>DATE DU PIRATAGE :</strong> {{ breach.BreachDate }}<br>
+                    <strong>DONNÉES COMPROMISES :</strong> <span style="color: #bbb;">{{ breach.DataClasses|join(', ') }}</span>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="success">✅ AUCUNE FUITE DÉTECTÉE DANS NOTRE BASE DE DONNÉES.</p>
+        {% endif %}
+
+        <div class="tuto">
+            <h2>💡 QUE FAIRE MAINTENANT ?</h2>
+            <ol>
+                <li><strong>Changez vos mots de passe</strong> sur les sites listés ci-dessus.</li>
+                <li>Activez l'<strong>authentification à deux facteurs</strong> (2FA).</li>
+                <li>Utilisez un gestionnaire de mots de passe pour ne jamais avoir le même partout.</li>
+            </ol>
+        </div>
+
+        <br><br>
+        <a href="/" style="color: #888; text-decoration: none;"> < RETOUR À L'ACCUEIL </a>
+    </div>
+</body>
+</html>

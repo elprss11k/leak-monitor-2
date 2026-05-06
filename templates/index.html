@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>LEAK MONITOR | OSINT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0a0a0c; --accent-color: #e74c3c; --border-color: #2d2d30; --text-main: #ffffff; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Roboto Mono', monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        body::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(var(--border-color) 1px, transparent 1px), linear-gradient(90deg, var(--border-color) 1px, transparent 1px); background-size: 40px 40px; z-index: -1; opacity: 0.2; }
+        .container { border: 1px solid var(--border-color); padding: 3rem; background: rgba(15, 15, 18, 0.9); text-align: center; max-width: 600px; width: 90%; }
+        h1 { font-size: 1.5rem; letter-spacing: 4px; text-transform: uppercase; border-bottom: 2px solid var(--accent-color); display: inline-block; padding-bottom: 10px; }
+        input { background: #141417; border: 1px solid var(--border-color); color: white; padding: 15px; width: 80%; margin-bottom: 20px; outline: none; font-family: 'Roboto Mono'; }
+        button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 12px 30px; cursor: pointer; text-transform: uppercase; font-weight: bold; }
+        button:hover { background: var(--accent-color); color: white; box-shadow: 0 0 20px var(--accent-color); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Leak Monitor</h1>
+        <p style="color: #888;">SYSTÈME DE SURVEILLANCE</p>
+        <form action="/verifier" method="post">
+            <input type="email" name="email" placeholder="USER@DOMAIN.COM" required>
+            <br>
+            <button type="submit">Lancer l'analyse</button>
+        </form>
+        <p style="font-size: 0.7rem; color: #e74c3c; margin-top: 20px;">[ QUOTA GRATUIT : {{ essais }} / 2 ]</p>
+    </div>
+</body>
+</html>
